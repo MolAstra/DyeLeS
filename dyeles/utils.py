@@ -2,7 +2,8 @@ from typing import Union, Tuple, NamedTuple
 from rdkit.Chem import QED
 from rdkit import Chem
 from rdkit.Chem.MolStandardize import rdMolStandardize
-
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
 
 class MoleculeStandardizer:
     def __init__(self):
@@ -44,3 +45,4 @@ def calculate_qed_properties(
         return props, qed
     else:
         return props
+
