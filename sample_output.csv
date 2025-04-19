@@ -1,0 +1,4 @@
+smiles,score,confidence
+[BH3-][P+]1(c2ccccc2)c2ccccc2-c2sc3ccccc3c21,3.7927220264827044,1.0
+[C-][N+]c1ccc(-c2ccc(N(C)C)cc2)cc1,1.8970211093761875,1.0
+C(=C/c1ccc(N(c2ccccc2)c2ccccc2)cc1)\c1ccc(-c2ccc(/C=C/c3ccc(N(c4ccccc4)c4ccccc4)cc3)cc2)cc1,0.46061316715430417,1.0
