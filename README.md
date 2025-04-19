@@ -45,6 +45,6 @@ from dyeles import DyeLeS
 
 smiles = "C(=C/c1ccc(N(c2ccccc2)c2ccccc2)cc1)\c1ccc(-c2ccc(/C=C/c3ccc(N(c4ccccc4)c4ccccc4)cc3)cc2)cc1"
 scorer = DyeLeS()
-score = scorer.score(smiles)
+score = scorer(smiles)
 print(f"score: {score}")
 ```

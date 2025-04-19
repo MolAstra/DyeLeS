@@ -12,16 +12,28 @@ RDLogger.DisableLog("rdApp.*")
 FLAGS = flags.FLAGS
 
 # 主参数定义 + 短命令
-flags.DEFINE_string("input", None, "Path to input CSV file containing SMILES. (Short: -i)")
+flags.DEFINE_string(
+    "input", None, "Path to input CSV file containing SMILES. (Short: -i)"
+)
 flags.DEFINE_string("i", None, "Alias for --input")
 
-flags.DEFINE_string("output", None, "Path to output CSV file to save results. (Short: -o)")
+flags.DEFINE_string(
+    "output", None, "Path to output CSV file to save results. (Short: -o)"
+)
 flags.DEFINE_string("o", None, "Alias for --output")
 
-flags.DEFINE_boolean("use_standardizer", True, "Whether to use RDKit standardizer before scoring. Default: True.")
-flags.DEFINE_boolean("return_confidence", False, "Whether to output confidence scores. Default: False.")
+flags.DEFINE_boolean(
+    "use_standardizer",
+    True,
+    "Whether to use RDKit standardizer before scoring. Default: True.",
+)
+flags.DEFINE_boolean(
+    "return_confidence", False, "Whether to output confidence scores. Default: False."
+)
 
-flags.DEFINE_boolean("force_write", False, "Force overwrite output file if it exists. (Short: -f)")
+flags.DEFINE_boolean(
+    "force_write", False, "Force overwrite output file if it exists. (Short: -f)"
+)
 flags.DEFINE_boolean("f", False, "Alias for --force_write")
 
 # 必须参数
@@ -43,7 +55,9 @@ def _main(argv):
 
     # 如果输出文件存在且没有force写入
     if os.path.exists(output_path) and not force_write:
-        logger.error(f"Output file {output_path} already exists. Use --force_write (-f) to overwrite.")
+        logger.error(
+            f"Output file {output_path} already exists. Use --force_write (-f) to overwrite."
+        )
         return
 
     # 读取输入CSV
@@ -58,12 +72,10 @@ def _main(argv):
     scorer = DyeLeS()
 
     if not FLAGS.return_confidence:
-        scores = scorer.score_batch(
-            df["smiles"].tolist(), use_standardizer=FLAGS.use_standardizer
-        )
+        scores = scorer(df["smiles"].tolist(), use_standardizer=FLAGS.use_standardizer)
         df["score"] = scores
     else:
-        scores = scorer.score_batch(
+        scores = scorer(
             df["smiles"].tolist(),
             use_standardizer=FLAGS.use_standardizer,
             return_confidence=True,
