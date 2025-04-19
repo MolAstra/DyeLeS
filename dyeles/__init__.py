@@ -53,25 +53,25 @@ class DyeLeS:
         else:
             return score
 
-    def score(
-        self, smiles: str, return_confidence=False, use_standardizer=True
-    ) -> float:
-        """输入一个SMILES字符串，返回打分(float)。无效的返回None。"""
-        mol = Chem.MolFromSmiles(smiles)
-        if use_standardizer:
-            mol = self.standardizer.standardize(mol)
-        return self._score_mol(mol, return_confidence)
-
-    def score_batch(
-        self, smiles: list[str], return_confidence=False, use_standardizer=True
-    ) -> list[float]:
-        """输入一个SMILES列表，返回打分(float)。无效的返回None。"""
-        scores = []
-        for smiles in tqdm(smiles):
+    def __call__(self, smiles, return_confidence=False, use_standardizer=True):
+        """支持直接调用对象，对单个或多个SMILES进行打分"""
+        if isinstance(smiles, str):
             mol = Chem.MolFromSmiles(smiles)
             if use_standardizer:
                 mol = self.standardizer.standardize(mol)
-            score = self._score_mol(mol, return_confidence)
-            if score is not None:
-                scores.append(score)
-        return scores
+            return self._score_mol(mol, return_confidence)
+
+        elif isinstance(smiles, list):
+            results = []
+            for smi in tqdm(smiles, desc="Scoring molecules"):
+                mol = Chem.MolFromSmiles(smi)
+                if use_standardizer:
+                    mol = self.standardizer.standardize(mol)
+                score = self._score_mol(mol, return_confidence)
+                results.append(score)
+            return results
+
+        else:
+            raise TypeError(
+                f"Unsupported input type: {type(smiles)} (must be str or list[str])"
+            )
