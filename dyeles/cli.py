@@ -22,6 +22,11 @@ flags.DEFINE_string(
 )
 flags.DEFINE_string("o", None, "Alias for --output")
 
+flags.DEFINE_string(
+    "col", "smiles", "Path to output CSV file to save results. (Short: -c)"
+)
+flags.DEFINE_string("c", "smiles", "Alias for --col")
+
 flags.DEFINE_boolean(
     "use_standardizer",
     True,
@@ -48,6 +53,7 @@ def _main(argv):
     input_path = FLAGS.input or FLAGS.i
     output_path = FLAGS.output or FLAGS.o
     force_write = FLAGS.force_write or FLAGS.f
+    col = FLAGS.col or FLAGS.c
 
     if input_path is None or output_path is None:
         logger.error("Error: Both --input (-i) and --output (-o) are required.")
@@ -62,8 +68,7 @@ def _main(argv):
 
     # 读取输入CSV
     df = pd.read_csv(input_path)
-
-    if "smiles" not in df.columns:
+    if col not in df.columns:
         logger.error("Error: Input CSV must contain a 'smiles' column.")
         return
 
@@ -72,11 +77,11 @@ def _main(argv):
     scorer = DyeLeS()
 
     if not FLAGS.return_confidence:
-        scores = scorer(df["smiles"].tolist(), use_standardizer=FLAGS.use_standardizer)
+        scores = scorer(df[col].tolist(), use_standardizer=FLAGS.use_standardizer)
         df["score"] = scores
     else:
         scores = scorer(
-            df["smiles"].tolist(),
+            df[col].tolist(),
             use_standardizer=FLAGS.use_standardizer,
             return_confidence=True,
         )

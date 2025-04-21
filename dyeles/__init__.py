@@ -1,13 +1,16 @@
+from typing import Iterable
 from dyeles.utils import MoleculeStandardizer
 import pickle
 import math
 from rdkit import Chem, RDLogger
+import rdkit
 from rdkit.Chem import rdMolDescriptors
 from pathlib import Path
 import pickle
 from tqdm.auto import tqdm
 import gzip
 from loguru import logger
+from typing import Tuple, List, Union
 
 # 关闭 RDKit 日志
 RDLogger.DisableLog("rdApp.*")
@@ -53,18 +56,55 @@ class DyeLeS:
         else:
             return score
 
-    def __call__(self, smiles, return_confidence=False, use_standardizer=True):
-        """支持直接调用对象，对单个或多个SMILES进行打分"""
-        if isinstance(smiles, str):
-            mol = Chem.MolFromSmiles(smiles)
+    def __call__(
+        self,
+        inputs: Union[str, Chem.Mol, Iterable[str], Iterable[Chem.Mol]],
+        return_confidence: bool = False,
+        use_standardizer: bool = True,
+    ) -> Union[float, Tuple[float, float], List[float], List[Tuple[float, float]]]:
+        """
+        支持直接调用对象，对单个或多个SMILES或Mol对象进行打分
+
+        Args:
+            input: 输入可以是以下类型之一：
+                - SMILES 字符串
+                - RDKit Mol 对象
+                - SMILES 字符串列表
+                - RDKit Mol 对象列表
+            return_confidence: 是否返回置信度分数
+            use_standardizer: 是否使用标准化器处理分子
+
+        Returns:
+            单个分子时返回分数（或分数+置信度元组）
+            多个分子时返回分数列表（或元组列表）
+        """
+        # 处理单个输入的情况
+        if isinstance(inputs, (str, Chem.Mol)):
+            if isinstance(inputs, str):
+                mol = Chem.MolFromSmiles(input)
+                if mol is None:
+                    logger.error(f"Invalid SMILES: {input}")
+                    return 0.
+            else:  # 已经是 Mol 对象
+                mol = inputs
+
             if use_standardizer:
                 mol = self.standardizer.standardize(mol)
             return self._score_mol(mol, return_confidence)
 
-        elif isinstance(smiles, list):
+        # 处理多个输入的情况
+        elif isinstance(inputs, Iterable):
             results = []
-            for smi in tqdm(smiles, desc="Scoring molecules"):
-                mol = Chem.MolFromSmiles(smi)
+            for item in tqdm(inputs, desc="Scoring molecules"):
+                if isinstance(item, str):
+                    mol = Chem.MolFromSmiles(item)
+                    if mol is None:
+                        logger.error(f"Invalid SMILES: {item}")
+                        results.append(0.)
+                        continue
+                else:  # 已经是 Mol 对象
+                    mol = item
+
                 if use_standardizer:
                     mol = self.standardizer.standardize(mol)
                 score = self._score_mol(mol, return_confidence)
@@ -73,5 +113,5 @@ class DyeLeS:
 
         else:
             raise TypeError(
-                f"Unsupported input type: {type(smiles)} (must be str or list[str])"
+                "Input must be SMILES string, Mol object, or their iterable"
             )
