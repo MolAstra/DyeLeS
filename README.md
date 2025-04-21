@@ -25,7 +25,7 @@ python scripts/pre_zinc.py
 python scripts/train_model.py \
     --dye_csv data/processed/dyes.csv \
     --non_dye_csv data/processed/coconut.csv \
-    --out_model_file dyles/resources/dye.model.gz
+    --out_model_file dyeles/resources/dye.model.gz
 ```
 
 ## Use DyeLeS

@@ -11,6 +11,7 @@ import sys
 import pandas as pd
 from collections import defaultdict
 from tqdm import tqdm
+from dyeles.utils import MoleculeStandardizer
 
 # Define command line flags
 flags.DEFINE_string(
@@ -45,6 +46,8 @@ flags.mark_flag_as_required("dye_csv")
 flags.mark_flag_as_required("non_dye_csv")
 flags.mark_flag_as_required("out_model_file")
 
+
+mol_standardizer = MoleculeStandardizer()
 
 def read_smiles_chunks(
     csv_path: str, smiles_column: str, chunk_size: int
@@ -91,6 +94,7 @@ def process_smiles_chunk(
 
     for smiles in tqdm(smiles_list, desc="Processing SMILES with chunk"):
         mol = Chem.MolFromSmiles(smiles)
+        mol = mol_standardizer.standardize(mol)
         if mol is None:
             continue
         valid_count += 1
