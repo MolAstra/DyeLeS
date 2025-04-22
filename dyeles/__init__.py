@@ -61,6 +61,7 @@ class DyeLeS:
         inputs: Union[str, Chem.Mol, Iterable[str], Iterable[Chem.Mol]],
         return_confidence: bool = False,
         use_standardizer: bool = True,
+        progress: bool = True,
     ) -> Union[float, Tuple[float, float], List[float], List[Tuple[float, float]]]:
         """
         支持直接调用对象，对单个或多个SMILES或Mol对象进行打分
@@ -84,7 +85,7 @@ class DyeLeS:
                 mol = Chem.MolFromSmiles(input)
                 if mol is None:
                     logger.error(f"Invalid SMILES: {input}")
-                    return 0.
+                    return 0.0
             else:  # 已经是 Mol 对象
                 mol = inputs
 
@@ -95,12 +96,12 @@ class DyeLeS:
         # 处理多个输入的情况
         elif isinstance(inputs, Iterable):
             results = []
-            for item in tqdm(inputs, desc="Scoring molecules"):
+            for item in tqdm(inputs, desc="Scoring molecules", disable=not progress):
                 if isinstance(item, str):
                     mol = Chem.MolFromSmiles(item)
                     if mol is None:
                         logger.error(f"Invalid SMILES: {item}")
-                        results.append(0.)
+                        results.append(0.0)
                         continue
                 else:  # 已经是 Mol 对象
                     mol = item

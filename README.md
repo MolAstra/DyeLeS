@@ -5,7 +5,7 @@
 ```bash
 mamba create -n DyeLeS python=3.10
 mamba activate DyeLeS
-pip install loguru rdkit-pypi seaborn matplotlib pandas scikit-learn ipykernel absl-py tqdm "numpy<2"
+pip install loguru rdkit-pypi seaborn matplotlib pandas scikit-learn ipykernel absl-py tqdm "numpy<2" lightgbm
 pip install -e .
 ```
 
