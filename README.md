@@ -9,7 +9,8 @@ pip install loguru rdkit-pypi seaborn matplotlib pandas scikit-learn ipykernel a
 pip install flask gradio  # optional, for webserver
 
 # optional, for atlas visualization
-pip install tmap faerun mhfp
+mamba install -c tmap tmap
+pip install faerun mhfp
 
 pip install -e .
 ```
