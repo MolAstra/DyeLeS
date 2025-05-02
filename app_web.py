@@ -1,24 +1,10 @@
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.middleware.cors import CORSMiddleware
-import pandas as pd
-import numpy as np
-import uvicorn
 import gradio as gr
-from dyeles import DyeLeS
-from pathlib import Path
-import yaml
-from typing import Literal
 from loguru import logger
-
 from webserver_utils import download_results, load_config, predict_smiles
 
-
-# 不再使用 click
 def run_web():
-    # 加载 web 配置
     args = load_config("web")
 
-    # 设置 Gradio UI
     with gr.Blocks() as iface:
         with gr.Tabs():
             with gr.TabItem("🏠 Home"):
