@@ -78,25 +78,31 @@ class Predictor:
 
     def search_db(self, smiles: str) -> dict:
         """从数据库中查找是否已有记录"""
-        canonical_smiles = self.get_canonical_smiles(smiles)
-        if canonical_smiles is None:
-            return None
-        hit = self.db[self.db["smiles"] == canonical_smiles]
-        if hit.empty:
-            return None
-        if len(hit) > 1:
-            logger.warning(f"Multiple hits found for {smiles}, using first one")
-            hit = hit.iloc[0]
+        try:
+            canonical_smiles = self.get_canonical_smiles(smiles)
+            if canonical_smiles is None:
+                return None
+        
+            hit = self.db[self.db["smiles"] == canonical_smiles]
 
-        return {
-            "smiles": hit["smiles"],
-            "molecular_weight": hit.get("molecular_weight"),
-            "dye_likeness_score": hit.get("dye_likeness_score"),
-            "stokes_shift": hit.get("stokes_shift"),
-            "quantum_yield": hit.get("quantum_yield"),
-            "absorption": hit.get("absorption"),
-            "emission": hit.get("emission"),
-        }
+            if hit.empty:
+                return None
+            if len(hit) > 1:
+                logger.warning(f"Multiple hits found for {smiles}, using first one")
+                hit = hit.iloc[0]
+            logger.info(hit)
+            return {
+                "smiles": hit["smiles"],
+                "molecular_weight": hit.get("molecular_weight"),
+                "dye_likeness_score": hit.get("dye_likeness_score"),
+                "stokes_shift": hit.get("stokes_shift"),
+                "quantum_yield": hit.get("quantum_yield"),
+                "absorption": hit.get("absorption"),
+                "emission": hit.get("emission"),
+            }
+        except Exception as e:
+            logger.error(f"Error searching DB for {smiles}: {e}")
+            return None
 
     def predict_dyeles(self, smiles: str) -> dict:
         try:
@@ -128,7 +134,6 @@ class Predictor:
 
         # 计算分子量
         molecular_weight = Chem.rdMolDescriptors.CalcExactMolWt(mol)
-
         return molecular_weight
 
     def predict(self, smiles: str) -> dict:
@@ -155,10 +160,11 @@ class Predictor:
 
         # 更新数据库中的结果
         results_db = self.search_db(smiles)
-        for k in results.keys():
-            if self.is_valid(results_db[k]):
-                logger.info(f"Updating {k} from {results_db[k]} to {results[k]}")
-                results[k] = results_db[k]
+        if results_db is not None:
+            for k in results.keys():
+                if self.is_valid(results_db.get(k)):
+                    logger.info(f"Updating {k} from {results_db[k]} to {results[k]}")
+                    results[k] = results_db[k]
 
         # fix stokes shift
         results["stokes_shift"] = results["emission"] - results["absorption"]

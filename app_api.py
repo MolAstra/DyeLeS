@@ -1,3 +1,4 @@
+import traceback
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
@@ -36,11 +37,13 @@ predictor = Predictor(args["data_path"])
 async def predict_properties(request: PredictRequest):
     smiles = request.smiles
     try:
+        assert Chem.MolFromSmiles(smiles) is not None, "Invalid SMILES"
         prediction = predictor.predict(smiles)
         prediction.update({"status": "success"})
         return clean_json(prediction)
     except Exception as e:
         logger.error(f"Error predicting for SMILES {smiles}: {e}")
+        logger.error(traceback.format_exc())
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
 
 

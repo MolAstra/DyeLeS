@@ -57,7 +57,6 @@ print(f"score: {score}")
 ### Webserver
 
 ```bash
-uvicorn app-api:app --reload
-
-python app-front.py
+python app_api.py  # API server, 8000 port
+python app_web.py  # Web server, 8001 port
 ```

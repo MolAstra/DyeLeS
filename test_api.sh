@@ -3,6 +3,6 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "smiles": "N#Cc1cc2ccc(O)cc2oc1=O"
+  "smiles": "CC(=O)OC1=CC=CC=C1C(O)=O"
 }'
   
