@@ -82,9 +82,9 @@ class DyeLeS:
         # 处理单个输入的情况
         if isinstance(inputs, (str, Chem.Mol)):
             if isinstance(inputs, str):
-                mol = Chem.MolFromSmiles(input)
+                mol = Chem.MolFromSmiles(inputs)
                 if mol is None:
-                    logger.error(f"Invalid SMILES: {input}")
+                    logger.error(f"Invalid SMILES: {inputs}")
                     return 0.0
             else:  # 已经是 Mol 对象
                 mol = inputs

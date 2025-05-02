@@ -6,6 +6,11 @@
 mamba create -n DyeLeS python=3.10
 mamba activate DyeLeS
 pip install loguru rdkit-pypi seaborn matplotlib pandas scikit-learn ipykernel absl-py tqdm "numpy<2" lightgbm
+pip install flask gradio  # optional, for webserver
+
+# optional, for atlas visualization
+pip install tmap faerun mhfp
+
 pip install -e .
 ```
 
@@ -47,4 +52,12 @@ smiles = "C(=C/c1ccc(N(c2ccccc2)c2ccccc2)cc1)\c1ccc(-c2ccc(/C=C/c3ccc(N(c4ccccc4
 scorer = DyeLeS()
 score = scorer(smiles)
 print(f"score: {score}")
+```
+
+### Webserver
+
+```bash
+uvicorn app-api:app --reload
+
+python app-front.py
 ```

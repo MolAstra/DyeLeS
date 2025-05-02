@@ -1,0 +1,8 @@
+# 加载数据和模型
+data_path: data/dyes/v3_canonicalized.csv
+
+# 字段映射关系
+FIELD_MAP:
+  Absorption: Absorption max (nm)
+  Emission: Emission max (nm)
+  Quantum Yield: Quantum yield
