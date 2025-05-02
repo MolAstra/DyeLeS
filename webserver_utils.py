@@ -186,7 +186,7 @@ def predict_smiles(smiles):
             img = None
 
         response = requests.post(
-            "http://localhost:8000/predict", json={"smiles": smiles}, timeout=10
+            "http://localhost:9000/predict", json={"smiles": smiles}, timeout=10
         )
         response.raise_for_status()
 

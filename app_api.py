@@ -51,7 +51,7 @@ async def predict_properties(request: PredictRequest):
 if __name__ == "__main__":
     uvicorn.run(
         "app_api:app",  # 使用模块路径而不是实例
-        host=args.get("host", "0.0.0.0"),
-        port=int(args.get("port", 8000)),
+        host=args.get("host", "127.0.0.1"),
+        port=int(args.get("port", 9000)),
         reload=True,  # 启用开发模式的自动重载
     )

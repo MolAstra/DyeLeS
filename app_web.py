@@ -89,8 +89,8 @@ def run_web():
 
     # 启动 Gradio 应用
     iface.launch(
-        server_name=args.get("host", "0.0.0.0"),
-        server_port=int(args.get("port", 7860)),
+        server_name=args.get("host", "127.0.0.1"),
+        server_port=int(args.get("port", 8000)),
         show_error=True,
     )
 
