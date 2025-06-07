@@ -24,8 +24,11 @@ class MoleculeStandardizer:
 
         # 3. 保留最大片段（比如只保留药物分子，去掉小盐）
         mol = self.fragment_chooser.choose(mol)
+        
+        # 4. Remove chirality
+        # mol = Chem.RemoveStereochemistry(mol)
 
-        # 4. 再次清理，确保规范
+        # 5. 再次清理，确保规范
         Chem.SanitizeMol(mol)
 
         return mol
