@@ -26,7 +26,7 @@ class MoleculeStandardizer:
         mol = self.fragment_chooser.choose(mol)
         
         # 4. Remove chirality
-        # mol = Chem.RemoveStereochemistry(mol)
+        Chem.RemoveStereochemistry(mol)
 
         # 5. 再次清理，确保规范
         Chem.SanitizeMol(mol)

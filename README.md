@@ -3,16 +3,18 @@
 ## Setups
 
 ```bash
+git clone https://github.com/zhaisilong/DyeLeS.git
+cd DyeLeS
+
 mamba create -n DyeLeS python=3.10
 mamba activate DyeLeS
-pip install loguru rdkit-pypi seaborn matplotlib pandas scikit-learn ipykernel absl-py tqdm "numpy<2" lightgbm
-pip install flask gradio  # optional, for webserver
 
-# optional, for atlas visualization
-mamba install -c tmap tmap
-pip install faerun mhfp
+# If you want to reproduce the results in the paper
+# git checkout v0.1.0
 
 pip install -e .
+
+mamba install -c tmap tmap
 ```
 
 ## Preprocess Data

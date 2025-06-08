@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dyeles"
+version = "0.2.0"
+description = "A simple tool to calculate DyeLikeness Scores from SMILES"
+authors = [{ name = "Silong Zhai", email = "zhaisilong@outlook.com" }]
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["dyeles"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+
+dependencies = [
+  "click",
+  "loguru",
+  "rdkit-pypi",
+  "seaborn",
+  "matplotlib",
+  "pandas",
+  "scikit-learn",
+  "ipykernel",
+  "absl-py",
+  "tqdm",
+  "numpy<2",
+  "lightgbm",
+  "flask",
+  "gradio",
+  "faerun",
+  "mhfp"
+]
+
+[project.urls]
+Homepage = "https://github.com/zhaisilong/DyeLeS"
+
+[project.scripts]
+dyeles-score = "dyeles.cli:main"
+
+[tool.setuptools]
+packages = ["dyeles"]
+include-package-data = true
