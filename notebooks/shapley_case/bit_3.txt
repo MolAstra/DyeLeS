@@ -1,0 +1,15 @@
+Bit 1100, SHAP value: 23.3771
+    Fragment 1: 
+Bit 463, SHAP value: -20.5229
+    Bit 463 not found in bitInfo.
+Bit 1724, SHAP value: 11.6142
+    Fragment 1: cc(c)n
+Bit 960, SHAP value: 9.0634
+    Fragment 1: cccc(c)N
+    Fragment 2: cccc(c)N
+    Fragment 3: cccc(c)N
+    Fragment 4: cccc(c)N
+    Fragment 5: cccc(c)N
+    Fragment 6: cccc(c)N
+Bit 1964, SHAP value: -8.1209
+    Fragment 1: ccc(cc)-c(c)c

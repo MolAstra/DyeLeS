@@ -1,0 +1,12 @@
+Bit 463, SHAP value: -21.0175
+    Bit 463 not found in bitInfo.
+Bit 1476, SHAP value: 19.2144
+    Fragment 1: O=S
+    Fragment 2: O=S
+Bit 692, SHAP value: 13.7123
+    Fragment 1: cc(=N)n
+Bit 993, SHAP value: 6.7525
+    Fragment 1: ccc(cc)S(N)(=O)=O
+Bit 650, SHAP value: 4.2981
+    Fragment 1: 
+    Fragment 2: 

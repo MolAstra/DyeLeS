@@ -1,0 +1,10 @@
+Bit 463, SHAP value: -25.4895
+    Bit 463 not found in bitInfo.
+Bit 364, SHAP value: -15.9365
+    Fragment 1: c[nH]cc(c)C
+Bit 457, SHAP value: 12.4798
+    Fragment 1: CC(=O)[O-]
+Bit 694, SHAP value: -8.2688
+    Bit 694 not found in bitInfo.
+Bit 875, SHAP value: -6.7910
+    Bit 875 not found in bitInfo.

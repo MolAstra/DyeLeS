@@ -1,0 +1,10 @@
+Bit 463, SHAP value: 79.3215
+    Fragment 1: 
+Bit 84, SHAP value: 24.7324
+    Fragment 1: C=Cc
+Bit 1594, SHAP value: -10.4017
+    Bit 1594 not found in bitInfo.
+Bit 890, SHAP value: -9.7537
+    Bit 890 not found in bitInfo.
+Bit 1060, SHAP value: -9.1909
+    Bit 1060 not found in bitInfo.

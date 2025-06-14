@@ -1,0 +1,10 @@
+Bit 463, SHAP value: -21.6284
+    Bit 463 not found in bitInfo.
+Bit 457, SHAP value: 16.4122
+    Fragment 1: 
+Bit 498, SHAP value: 12.5304
+    Fragment 1: n[B-](n)(F)F
+Bit 694, SHAP value: -4.7405
+    Bit 694 not found in bitInfo.
+Bit 1594, SHAP value: -4.5661
+    Bit 1594 not found in bitInfo.

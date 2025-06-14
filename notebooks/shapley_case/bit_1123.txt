@@ -1,0 +1,10 @@
+Bit 1773, SHAP value: 33.1886
+    Fragment 1: cc/c(=[NH+]/C)c(c)C
+Bit 1447, SHAP value: 22.1746
+    Fragment 1: cccc(c)C
+Bit 294, SHAP value: 19.5179
+    Fragment 1: CC
+Bit 133, SHAP value: 15.2305
+    Fragment 1: cc(c)o
+Bit 121, SHAP value: 11.2062
+    Fragment 1: cc(-c)o

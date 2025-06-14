@@ -1,0 +1,14 @@
+Bit 1594, SHAP value: 33.0044
+    Fragment 1: C=C(C)C
+    Fragment 2: C=C(C)C
+Bit 463, SHAP value: -23.1686
+    Bit 463 not found in bitInfo.
+Bit 1093, SHAP value: 22.5039
+    Fragment 1: C=C(c)N
+    Fragment 2: C=C(c)N
+Bit 139, SHAP value: 16.8742
+    Fragment 1: C=C(c)N(CC)C(C)=O
+    Fragment 2: C=C(c)N(CC)C(C)=O
+Bit 1386, SHAP value: 16.5383
+    Fragment 1: CC(=O)O
+    Fragment 2: CC(=O)O
