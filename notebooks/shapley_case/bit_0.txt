@@ -1,0 +1,12 @@
+Bit 1631, SHAP value: -0.0566
+    Fragment 1: CNO
+Bit 694, SHAP value: -0.0507
+    Fragment 1: 
+    Fragment 2: 
+Bit 1981, SHAP value: 0.0358
+    Fragment 1: CCN(C)C
+    Fragment 2: CCN(C)C
+Bit 1897, SHAP value: 0.0301
+    Fragment 1: cc(C)n
+Bit 1184, SHAP value: -0.0239
+    Fragment 1: CCCCc
