@@ -8,7 +8,7 @@ version = "0.2.0"
 description = "A simple tool to calculate DyeLikeness Scores from SMILES"
 authors = [{ name = "Silong Zhai", email = "zhaisilong@outlook.com" }]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 license = "MIT"
 keywords = ["dyeles"]
 classifiers = [
@@ -42,5 +42,8 @@ Homepage = "https://github.com/zhaisilong/DyeLeS"
 dyeles-score = "dyeles.cli:main"
 
 [tool.setuptools]
-packages = ["dyeles"]
+packages = ["dyeles", "dyeles.resources"]
 include-package-data = true
+
+[tool.setuptools.package-data]
+"dyeles" = ["resources/*"]
