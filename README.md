@@ -63,3 +63,22 @@ print(f"score: {score}")
 python app_api.py  # API server, 8000 port
 python app_web.py  # Web server, 8001 port
 ```
+
+## Citation
+
+if you find this work is interesting, please cite our work
+
+```bash
+@article{D5RA03164H,
+  title = {{{DyeLeS}}: A Web Platform for Predicting and Classifying Fluorescence Properties of Bioactive Molecules},
+  author = {Xu, Jiangcheng and Yu, Wenbo and Zhou, Nan and Zhong, Jiamin and Lyu, Jintian and Su, Zhihao and Chen, Yu and Du, Kui},
+  date = {2025},
+  journaltitle = {RSC Advances},
+  shortjournal = {RSC Adv.},
+  volume = {15},
+  number = {27},
+  pages = {21977--21986},
+  publisher = {The Royal Society of Chemistry},
+  doi = {10.1039/D5RA03164H},
+  url = {http://dx.doi.org/10.1039/D5RA03164H}}
+```
